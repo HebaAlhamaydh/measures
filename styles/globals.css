@@ -15,6 +15,30 @@ a {
   box-sizing: border-box;
 }
 
+span {
+  color: blueviolet;
+}
+.swiper-button-next,
+.swiper-button-prev {
+
+  /* background-color: rgba(0, 0, 0,0.5);
+  color: white !important; */
+  /* width: 10px; */
+  /* padding: 25px; */
+  /* border-radius: 50%; */
+
+}
+.swiper-navigation {
+  position: absolute;
+  top: 33%;
+  left: 80px;
+  right:80px;
+}
+
+h2 {
+  text-align: end;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,0 +1,82 @@
+import React, { useRef } from "react";
+import CardSlide from "./CardSlide";
+import data from "../data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import "swiper/swiper-bundle.min.css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+import "swiper/css";
+
+import ModalShynessQuiz from "./ModalShynees/ModalShynessQuiz";
+export default function MySlide() {
+  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  const swiperRef = useRef(null);
+
+  const handleNextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
+  const handlePrevSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+  return (
+    <>
+      <h2>
+        لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من{" "}
+        <span>كيورا </span>
+      </h2>
+      <Swiper
+        // spaceBetween={5}
+        slidesPerView={4}
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        className="mySwiper"
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          770: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+        }}
+      >
+        {data.map((card, index) => (
+          <SwiperSlide key={index}>
+            <CardSlide
+              key={card.id}
+              backgroundColor={card.backgroundColor}
+              cardTitle={card.cardTitle}
+              cardIcon={card.cardIcon}
+              cardTime={card.cardTime}
+            ></CardSlide>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <div className="swiper-navigation">
+        <div className="swiper-button-next" onClick={handleNextSlide}></div>
+        <div className="swiper-button-prev" onClick={handlePrevSlide}></div>
+      </div>
+    </>
+  );
+}

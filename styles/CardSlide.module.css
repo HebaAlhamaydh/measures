@@ -1,0 +1,32 @@
+.cardContainer {
+  border: 1px solid #ccc;
+  display: grid;
+  grid-template-rows: 50px 50px 50px;
+  align-items: center;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  transition: transform 300ms;
+}
+.cardContainer:is(:hover, :focus) {
+  /* zoom-in effect*/
+  transform: scale(1.09);
+}
+
+.cardTitle {
+  text-align: right;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.time {
+  text-align: right;
+  font-size: 18px;
+  color: rgb(190, 188, 188);
+}
+
+.cardIcon {
+  text-align: end;
+  font-size: 50px;
+}

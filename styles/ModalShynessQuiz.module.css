@@ -1,0 +1,115 @@
+.dialog {
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding-bottom: 2rem;
+}
+.headerContent {
+  background-color: #5e4af5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}
+.headerContent button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background-color: transparent;
+  border: none;
+}
+.headerContent h2 {
+  font-size: 25px;
+  color: white;
+  padding-inline: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  gap: 0.5rem;
+  padding-inline: 12px;
+}
+.list li {
+  text-align: end;
+  background-color: rgb(238, 235, 235);
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  list-style: none;
+}
+
+.list li.selected,
+.list li:hover {
+  background-color: #d9d5f7;
+  color: #553ffa;
+  border-color: #5e4af5;
+}
+
+.nextButton {
+  background-color: #5e4af5;
+  width: 150px;
+  text-align: center;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-inline: 20px;
+  /* margin-top: -1.5rem; */
+}
+/*popup alert*/
+.popup {
+  top: 62%;
+  /* left: 5%; */
+  width: 350px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 88888888;
+}
+
+.alertContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}
+.popupButton {
+  background-color: #5e4af5;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 160px;
+  color: red;
+}
+.progressBar {
+  width: 100%;
+  height: 5px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.progressBarInner {
+  height: 100%;
+  background-color: #5e4af5;
+}

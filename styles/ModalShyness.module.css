@@ -1,0 +1,76 @@
+.dialog {
+  /* animation: droptop 0.5s ease-in-out;; */
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 9999;
+  /* transform: translate(-50%,-50%) scale(0.1); */
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 1rem;
+}
+.modalContent p {
+  text-align: end;
+}
+.headerContent {
+  background-color: #5e4af5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+.headerContent button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+}
+.icon {
+  font-size: 200px;
+  color: white;
+}
+.textModal {
+  padding-inline: 15px;
+}
+.note {
+  padding-top: 70px;
+  font-size: 15px;
+  color: gray;
+}
+.scale {
+  text-align: end;
+  background-color: #dddada;
+  color: rgb(83, 82, 82);
+  border-radius: 3px;
+  padding-inline-end: 5px;
+}
+.startButton {
+  background-color: #5e4af5;
+  width: 100%;
+  text-align: center;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+/* 
+  @keyframes droptop {
+    from { */
+/* transform: translateY(-100%) scale (0);translated 100% upwards (off the top of the viewport) scaled to 0 (completely invisible). */
+/* opacity: 0;(not visible) at the beginning of the animation */
+/* }
+    to { */
+/* transform: translateY(100%) scale (1);means the element is translated back to its original position */
+/* opacity: 1; visible at the end of the animation. */
+/* }
+  
+  } */
