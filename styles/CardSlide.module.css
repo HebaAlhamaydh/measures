@@ -1,8 +1,9 @@
 .cardContainer {
   border: 1px solid #ccc;
   display: grid;
-  grid-template-rows: 50px 50px 50px;
+  grid-template-rows: 1fr 1fr 1fr;
   align-items: center;
+  text-align: end;
   color: white;
   padding: 1rem;
   border-radius: 5px;
@@ -15,18 +16,33 @@
 }
 
 .cardTitle {
-  text-align: right;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .time {
-  text-align: right;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 20px;
   color: rgb(190, 188, 188);
 }
 
 .cardIcon {
-  text-align: end;
   font-size: 50px;
+}
+@media (min-width: 768px) {
+  .cardTitle {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+@media (min-width: 770px) {
+  .cardTitle {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardTitle {
+    font-size: 20px;
+  }
 }

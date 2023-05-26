@@ -1,14 +1,11 @@
 import { RiHeartPulseLine } from "react-icons/ri";
-import { AiFillAppstore } from "react-icons/ai";
 import { TbBrain, TbLockSquare } from "react-icons/tb";
 import { BsPersonBoundingBox, BsHeartbreak } from "react-icons/bs";
 import { BsDice4 } from "react-icons/bs";
-import { GiHeartMinus } from "react-icons/gi";
 
 const icon1 = <RiHeartPulseLine />;
 const icon2 = <TbBrain />;
 const icon3 = <BsHeartbreak />;
-
 const icon4 = <BsPersonBoundingBox />;
 const icon5 = <BsDice4 />;
 const icon6 = <TbLockSquare />;

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { RiHeartPulseLine } from "react-icons/ri";
 import { AiOutlineRight } from "react-icons/ai";
 import styles from "../../styles/ModalShyness.module.css";
@@ -9,16 +9,21 @@ export default function ModalShyness({ modalRef }) {
   const handleClose = () => modalRef.current.close();
 
   const modalQuizRefs = useRef([]);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
 
   const handleQuizClick = (id) => {
     if (modalQuizRefs.current[id]) {
+      /*This updates the state variable currentQuestion with the next question number:*/
+      setCurrentQuestion(id + 1);
       modalQuizRefs.current[id].showModal();
     }
   };
   const handleQuizClose = (id) => {
-    /* checks if a modal reference exists at the specified index (id) in the modalQuizRefs array */
+    /* checks if a modal reference exists at the specified index (id) in the modalQuizRefs array 
+    If the modal reference exists, it means that the modal has been rendered and stored in the modalQuizRefs array.*/
     if (modalQuizRefs.current[id]) {
-      /*If it does, the showModal method is called on that reference.*/
+      /*If it does, the close method is called on that reference.*/
+      setCurrentQuestion((prev) => prev - 1);
       modalQuizRefs.current[id].close();
     }
   };
@@ -39,7 +44,7 @@ export default function ModalShyness({ modalRef }) {
             <h2>مقياس الخجل الاجتماعي</h2>
             <p>
               الجمل التالية متعلقة بوضعك في مجتمعك المحيط و كيف كانت تجربتك في
-              هذا الوضع{" "}
+              هذا الوضع
             </p>
             <p>من فضلك عبر الى أي مدى تنطبق الجمل التالية عليك </p>
             <p className={styles.note}>
@@ -64,17 +69,15 @@ export default function ModalShyness({ modalRef }) {
           handleOpen={() => handleQuizClick(index + 1)}
           handleClose={() => handleQuizClose(index)}
           key={index}
-          /*callback is used to store a reference to the current modal component instance in the modalQuizRefs array.
-           It takes a function as an argument that receives a reference (ref) to the modal component instance. 
-           Inside the function, the reference is assigned to the corresponding index (index) in the modalQuizRefs array  */
+          /*is a function that receives a reference (ref) to the dialog element of the modal. 
+          store the reference of each modal instance in the modalQuizRefs array */
+          /**for each question have index in loop so for each question have modal */
           modalQuizRef={(ref) => (modalQuizRefs.current[index] = ref)}
-          modalQuizNext={(ref) => (modalQuizRefs.current[index + 1] = ref)}
+          // modalQuizNext={(ref) => (modalQuizRefs.current[index + 1] = ref)}
+          currentQuestion={currentQuestion}
           question={item.question}
-          answerOne={item.answerOne}
-          answerTwo={item.answerTwo}
-          answerThree={item.answerThree}
-          answerFour={item.answerFour}
-          answerFive={item.answerFive}
+          answer={item.options}
+          active={currentQuestion}
         />
       ))}
     </>

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import styles from "../styles/CardSlide.module.css";
-import ModalShyness from "./ModalShynees/ModalShyness";
+import styles from "../../styles/CardSlide.module.css";
+import ModalShyness from "../ModalShynees/ModalShyness";
 
 export default function CardSlide(props) {
   const { cardIcon, cardTitle, cardTime, backgroundColor } = props;

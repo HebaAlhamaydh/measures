@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import MySlide from '../components/MySlide'
+import Head from "next/head";
+
+import styles from "../styles/Home.module.css";
+import MySlide from "../components/Slides/MySlide";
 
 export default function Home() {
   return (
@@ -13,11 +13,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-    
-  <MySlide/>
+        <MySlide />
       </main>
-
-   
     </div>
-  )
+  );
 }

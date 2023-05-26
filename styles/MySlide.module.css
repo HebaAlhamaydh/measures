@@ -1,5 +1,26 @@
+.title {
+  font-size: 23px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.note {
+  font-size: 15px;
+  color: gray;
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: 25px;
+  }
+}
+@media (min-width: 770px) {
+  .title {
+    font-size: 30px;
+  }
+}
 
-/* 
-.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
-  padding: 5rem;
-} */
+@media (min-width: 1024px) {
+  .title {
+    font-size: 30px;
+  }
+}

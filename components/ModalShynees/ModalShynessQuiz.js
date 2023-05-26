@@ -4,24 +4,19 @@ import styles from "../../styles/ModalShynessQuiz.module.css";
 export default function ModalShynessQuiz(props) {
   const {
     modalQuizRef,
-    modalQuizNext,
+    currentQuestion,
+    active,
     question,
-    answerOne,
-    answerTwo,
-    answerThree,
-    answerFour,
-    answerFive,
+    answer,
     handleOpen,
     handleClose,
   } = props;
 
   const alertRef = useRef(null);
+
   const progressBarRef = useRef(null);
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-
-  const [currentQuestion, setCurrentQuestion] = useState(1);
-
   const totalQuestions = 13;
 
   const progress = (currentQuestion / totalQuestions) * 100;
@@ -33,8 +28,7 @@ export default function ModalShynessQuiz(props) {
   };
 
   const handleQuizClick = () => {
-    if (selectedAnswer && currentQuestion < totalQuestions) {
-      setCurrentQuestion(currentQuestion + 1);
+    if (selectedAnswer) {
       handleOpen();
     } else {
       alertRef.current.showModal();
@@ -44,12 +38,13 @@ export default function ModalShynessQuiz(props) {
   const closePopup = () => {
     alertRef.current.close();
   };
-  useEffect(() => {
-    progressBarRef.current.style.width = `${progress}%`;
-  }, [progress]);
+
   return (
     <>
-      <dialog ref={modalQuizRef} className={`${styles.dialog}`}>
+      <dialog
+        ref={modalQuizRef}
+        className={`${styles.dialog} ${active ? styles.active : styles.hidden}`}
+      >
         <div className={styles.modalContent}>
           <div className={styles.headerContent}>
             <button onClick={closeModal}>
@@ -59,44 +54,18 @@ export default function ModalShynessQuiz(props) {
           </div>
 
           <ul className={styles.list}>
-            <li
-              onClick={() => handleAnswerClick(answerOne)}
-              className={selectedAnswer === answerOne ? styles.selected : ""}
-            >
-              {answerOne}
-            </li>
-            <li
-              onClick={() => {
-                handleAnswerClick(answerTwo);
-              }}
-              className={selectedAnswer === answerTwo ? styles.selected : ""}
-            >
-              {answerTwo}
-            </li>
-            <li
-              onClick={() => {
-                handleAnswerClick(answerThree);
-              }}
-              className={selectedAnswer === answerThree ? styles.selected : ""}
-            >
-              {answerThree}
-            </li>
-            <li
-              onClick={() => {
-                handleAnswerClick(answerFour);
-              }}
-              className={selectedAnswer === answerFour ? styles.selected : ""}
-            >
-              {answerFour}
-            </li>
-            <li
-              onClick={() => {
-                handleAnswerClick(answerFive);
-              }}
-              className={selectedAnswer === answerFive ? styles.selected : ""}
-            >
-              {answerFive}
-            </li>
+            {answer &&
+              answer.map((answerItem, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleAnswerClick(answerItem)}
+                  className={
+                    selectedAnswer === answerItem ? styles.selected : ""
+                  }
+                >
+                  {answerItem}
+                </li>
+              ))}
           </ul>
           <div className={styles.progressBar}>
             <div
