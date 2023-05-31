@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 export default function ModalShynessQuiz(props) {
   const { locale } = useRouter();
   const {
-    key,
     id,
     modalQuizRef,
     currentQuestion,

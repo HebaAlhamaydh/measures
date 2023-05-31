@@ -33,7 +33,7 @@ export default function MySlide(props) {
     push(asPath, asPath, { locale: newLocale });
   };
 
-  const languages = locale === "en" ? `English` : ` لغة عربية`;
+  const languages = locale === "en" ? `لغة عربية` : ` English `;
   const textOne =
     locale === "en"
       ? `Because your mental health is important to know its level using the Labayh measures `

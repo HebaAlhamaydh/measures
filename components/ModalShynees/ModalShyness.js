@@ -38,7 +38,6 @@ export default function ModalShyness({
       /*If it does, the close method is called on that reference.*/
       setCurrentQuestion((prev) => prev - 1);
       modalQuizRefs.current[id].close();
-      
     }
   };
   ///////////////////close all modals//////////
@@ -62,7 +61,7 @@ export default function ModalShyness({
       <dialog
         ref={modalRef}
         className={`${styles.dialog} ${
-          id ? styles[`animation${id}`] : styles.hidden
+          data.modalId ? styles[`animation${data.modalId}`] : styles.hidden
         }`}
       >
         <div className={styles.modalContent}>

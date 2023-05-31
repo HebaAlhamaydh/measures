@@ -25,57 +25,60 @@
 .dialog.animation6 {
   animation: fade-out 2s ease-out forwards;
 }
+
 @keyframes fade-in {
   from {
-    opacity: 0;
+    opacity: 0; /*completely transparent*/
   }
   to {
-    opacity: 1;
+    opacity: 1; /*fully opaque*/
   }
 }
 @keyframes slide {
   from {
-    transform: translateX(100%);
+    transform: translateX(100%); /*full width*/
   }
   to {
-    transform: translateX(0);
+    transform: translateX(0); /* moved back to its original position*/
   }
 }
 
 @keyframes slide-in {
   from {
-    transform: translateY(100%);
+    transform: translateY(100%); /*full height*/
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0); /* moved back to its original position*/
   }
 }
 
-@keyframes zoomin {
+@keyframes zoomIn {
   from {
-    transform: scale(0);
+    transform: scale(0); /* initially scaled down to 0 making it invisible*/
   }
   to {
-    transform: scale(1);
+    transform: scale(
+      1
+    ); /* scaled back to its original size  no scaling applied*/
   }
 }
 @keyframes pulse {
   0% {
-    transform: scale(1);
+    transform: scale(1); /*no scaled applied original size*/
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.2); /*scaled up */
   }
   100% {
-    transform: scale(1);
+    transform: scale(1); /*no scaled applied original size*/
   }
 }
 @keyframes fade-out {
   from {
-    opacity: 1;
+    opacity: 0; /*visible*/
   }
   to {
-    opacity: 0;
+    opacity: 1; /*completely transparent */
   }
 }
 .dialog.hidden {

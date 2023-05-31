@@ -74,10 +74,10 @@
 }
 @keyframes fade-out {
   from {
-    opacity: 1;
+    opacity: 0;
   }
   to {
-    opacity: 0;
+    opacity: 1;
   }
 }
 .dialog.hidden {
