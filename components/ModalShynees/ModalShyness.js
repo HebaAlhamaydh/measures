@@ -38,7 +38,7 @@ export default function ModalShyness({
       /*If it does, the close method is called on that reference.*/
       setCurrentQuestion((prev) => prev - 1);
       modalQuizRefs.current[id].close();
-      setCurrentQuestion(null);
+      
     }
   };
   ///////////////////close all modals//////////
