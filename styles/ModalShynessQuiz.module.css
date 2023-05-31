@@ -8,21 +8,78 @@
   padding: 0;
 }
 
-.dialog.active {
-  /* display: block; */
+.dialog.active1 {
+  animation: fade-in 0.5s ease-in-out;
+}
+.dialog.active2 {
   animation: slide 0.5s ease-in-out;
+}
+.dialog.active3 {
+  animation: slide-in 0.5s ease-in-out;
+}
+.dialog.active4 {
+  animation: zoomIn 0.5s ease-in-out;
+}
+.dialog.active5 {
+  animation: pulse 1s ease-in-out;
+}
+.dialog.active6 {
+  animation: fade-out 2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes slide {
   from {
     transform: translateX(100%);
-    opacity: 0;
   }
   to {
     transform: translateX(0);
-    opacity: 1;
   }
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .dialog.hidden {
   display: none;
 }
@@ -34,13 +91,13 @@
   padding-bottom: 2rem;
 }
 .headerContent {
-  background-color: #5e4af5;
+  /* background-color: #5e4af5; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
 }
-.headerContent button {
+.headerContent .btnClose {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -48,10 +105,17 @@
   background-color: transparent;
   border: none;
 }
+.headerContent .btnCloseAll {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+}
 .headerContent h2 {
   font-size: 25px;
   color: white;
-  padding-inline: 20px;
+  padding-inline: 10px;
 }
 
 .list {
@@ -62,7 +126,7 @@
   padding-inline: 12px;
 }
 .list li {
-  text-align: end;
+  text-align: start;
   background-color: rgb(238, 235, 235);
   border: 1px solid white;
   border-radius: 10px;
@@ -75,12 +139,12 @@
 }
 .list li.selected {
   background-color: #d9d5f7;
-  color: #553ffa;
-  border-color: #5e4af5;
+  color: white;
+  /* border-color: #5e4af5; */
 }
 
 .nextButton {
-  background-color: #5e4af5;
+  /* background-color: #5e4af5; */
   width: 150px;
   text-align: center;
   border: none;
@@ -109,7 +173,7 @@
   height: 100px;
 }
 .popupButton {
-  background-color: #5e4af5;
+  /* background-color: #5e4af5; */
   color: white;
   padding: 10px;
   border: none;
@@ -133,5 +197,5 @@
 .progressBarInner {
   transition: 0.5s;
   height: 100%;
-  background-color: #5e4af5;
+  /* background-color: #5e4af5; */
 }

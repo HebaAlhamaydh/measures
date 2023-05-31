@@ -6,50 +6,117 @@
   margin: 0;
   padding: 0;
   z-index: 9999;
+}
+.dialog.animation1 {
+  animation: fade-in 0.5s ease-in-out;
+}
+.dialog.animation2 {
   animation: slide 0.5s ease-in-out;
 }
-
-@keyframes slide {
+.dialog.animation3 {
+  animation: slide-in 0.5s ease-in-out;
+}
+.dialog.animation4 {
+  animation: zoomIn 0.5s ease-in-out;
+}
+.dialog.animation5 {
+  animation: pulse 1s ease-in-out;
+}
+.dialog.animation6 {
+  animation: fade-out 2s ease-out forwards;
+}
+@keyframes fade-in {
   from {
-    transform: translateX(100%);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
     opacity: 1;
   }
 }
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomin {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.dialog.hidden {
+  display: none;
+}
 .modalContent {
   display: flex;
   flex-direction: column;
   height: 100%;
+
   padding-bottom: 1rem;
 }
 .modalContent p {
   text-align: end;
 }
 .headerContent {
-  background-color: #5e4af5;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   flex-grow: 1;
 }
-.headerContent button {
+.headerContent .btnClose {
   position: absolute;
   top: 10px;
   right: 10px;
   background-color: transparent;
   border: none;
 }
+
 .icon {
-  font-size: 200px;
+  font-size: 55px;
   color: white;
 }
 .textModal {
+  text-align: start;
   padding-inline: 15px;
+}
+.textModal h2,
+.textModal p {
+  text-align: inherit;
 }
 .note {
   padding-top: 70px;
@@ -64,7 +131,7 @@
   padding-inline-end: 5px;
 }
 .startButton {
-  background-color: #5e4af5;
+  /* background-color: #5e4af5; */
   width: 100%;
   text-align: center;
   border: none;

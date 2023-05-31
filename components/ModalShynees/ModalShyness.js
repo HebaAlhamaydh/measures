@@ -1,23 +1,36 @@
 import { useRef, useState } from "react";
-import { RiHeartPulseLine } from "react-icons/ri";
+
 import { AiOutlineRight } from "react-icons/ai";
 import styles from "../../styles/ModalShyness.module.css";
-import shynessScaleQuestionData from "../../shynessScaleQuestionData";
-import ModalShynessQuiz from "./ModalShynessQuiz";
 
-export default function ModalShyness({ modalRef }) {
-  const handleClose = () => modalRef.current.close();
+import ModalShynessQuiz from "./ModalShynessQuiz";
+import { useRouter } from "next/router";
+
+export default function ModalShyness({
+  modalRef,
+  data,
+  id,
+  backgroundColor,
+  cardIcon,
+}) {
+  const { locale } = useRouter();
+
+  const handleClose = () => {
+    modalRef.current.close();
+  };
 
   const modalQuizRefs = useRef([]);
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
+  ///////////////////show quiz modal////////////
   const handleQuizClick = (id) => {
     if (modalQuizRefs.current[id]) {
-      /*This updates the state variable currentQuestion with the next question number:*/
+      /*updates the state variable currentQuestion with the next question number:*/
       setCurrentQuestion(id + 1);
       modalQuizRefs.current[id].showModal();
     }
   };
+  //////////////////go back to previous maodal////////////
   const handleQuizClose = (id) => {
     /* checks if a modal reference exists at the specified index (id) in the modalQuizRefs array 
     If the modal reference exists, it means that the modal has been rendered and stored in the modalQuizRefs array.*/
@@ -25,59 +38,75 @@ export default function ModalShyness({ modalRef }) {
       /*If it does, the close method is called on that reference.*/
       setCurrentQuestion((prev) => prev - 1);
       modalQuizRefs.current[id].close();
+      setCurrentQuestion(null);
     }
   };
+  ///////////////////close all modals//////////
+  const handleCloseAll = () => {
+    handleClose();
+    modalQuizRefs.current.forEach((modalRef) => {
+      if (modalRef && modalRef.close) {
+        modalRef.close();
+      }
+    });
+  };
 
+  /////////////////*************//////////////
+  const start = locale === "en" ? `start` : `البدأ الآن `;
+  const textTwo =
+    locale === "en"
+      ? `Disclaimer:These tests arent a diagnostic tool or a therapeutic tool and dont dispense with consulting a doctor or psychotherapist `
+      : `تنويه هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن جلسة الطبيب أو المعالج النفسي`;
   return (
     <>
-      <dialog ref={modalRef} className={`${styles.dialog}`}>
+      <dialog
+        ref={modalRef}
+        className={`${styles.dialog} ${
+          id ? styles[`animation${id}`] : styles.hidden
+        }`}
+      >
         <div className={styles.modalContent}>
-          <div className={styles.headerContent}>
-            <button onClick={handleClose}>
+          <div
+            className={styles.headerContent}
+            style={{ backgroundColor: backgroundColor }}
+          >
+            <button className={styles.btnClose} onClick={handleClose}>
               <AiOutlineRight />
             </button>
-            <p>
-              <RiHeartPulseLine className={styles.icon} />
-            </p>
+
+            <p className={styles.icon}>{cardIcon}</p>
           </div>
           <div className={styles.textModal}>
-            <h2>مقياس الخجل الاجتماعي</h2>
-            <p>
-              الجمل التالية متعلقة بوضعك في مجتمعك المحيط و كيف كانت تجربتك في
-              هذا الوضع
-            </p>
-            <p>من فضلك عبر الى أي مدى تنطبق الجمل التالية عليك </p>
-            <p className={styles.note}>
-              تنويه: هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن
-              جلسة الطبيب أو المعالج النفسي
-            </p>
-            <p className={styles.scale}>
-              هذه الأداة وفقا لمقياس McCrosKey للخجل الاجتماعي
-            </p>
+            <h2>{data.title}</h2>
+            <p>{data.textOne}</p>
+            <p>{data.textTwo}</p>
+            <p className={styles.note}>{textTwo}</p>
+            <p className={styles.scale}>{data.scale}</p>
             <button
+              style={{ backgroundColor: backgroundColor }}
               className={styles.startButton}
               onClick={() => handleQuizClick(0)}
             >
-              البدأ الان
+              {start}
             </button>
           </div>
         </div>
       </dialog>
 
-      {shynessScaleQuestionData.map((item, index) => (
+      {data.questions.map((question, index) => (
         <ModalShynessQuiz
+          id={id}
           handleOpen={() => handleQuizClick(index + 1)}
           handleClose={() => handleQuizClose(index)}
-          key={index}
-          /*is a function that receives a reference (ref) to the dialog element of the modal. 
-          store the reference of each modal instance in the modalQuizRefs array */
-          /**for each question have index in loop so for each question have modal */
+          key={`${question.modalId}-${question.id}`}
           modalQuizRef={(ref) => (modalQuizRefs.current[index] = ref)}
-          // modalQuizNext={(ref) => (modalQuizRefs.current[index + 1] = ref)}
           currentQuestion={currentQuestion}
-          question={item.question}
-          answer={item.options}
+          question={question}
+          answer={question.options}
+          totalQuestions={data.questions.length}
+          backgroundColor={data.backgroundColor}
           active={currentQuestion}
+          handleCloseAll={handleCloseAll}
         />
       ))}
     </>

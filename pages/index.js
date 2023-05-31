@@ -1,9 +1,14 @@
 import Head from "next/head";
-
+import data from "../allQuiz";
 import styles from "../styles/Home.module.css";
 import MySlide from "../components/Slides/MySlide";
+import ModalShyness from "../components/ModalShynees/ModalShyness";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Home(props) {
+  const { locale } = useRouter();
+
+  // console.log(JSON.parse(props.rowData)[locale]);
   return (
     <div className={styles.container}>
       <Head>
@@ -13,8 +18,15 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <MySlide />
+        <MySlide data={props.rowData} />
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const rowData = JSON.stringify(data);
+  return {
+    props: { rowData },
+  };
 }

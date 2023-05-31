@@ -9,8 +9,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css";
+import { useRouter } from "next/router";
 
-export default function MySlide() {
+export default function MySlide(props) {
+  const { locale, asPath, push } = useRouter();
+  // console.log(data[locale].data);
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   const swiperRef = useRef(null);
 
@@ -25,15 +28,29 @@ export default function MySlide() {
       swiperRef.current.swiper.slidePrev();
     }
   };
+  const changeLanguage = (e) => {
+    const newLocale = locale === "en" ? "ar" : "en";
+    push(asPath, asPath, { locale: newLocale });
+  };
+
+  const languages = locale === "en" ? `English` : ` لغة عربية`;
+  const textOne =
+    locale === "en"
+      ? `Because your mental health is important to know its level using the Labayh measures `
+      : `لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من كيورا`;
+  const textTwo =
+    locale === "en"
+      ? `Disclaimer:These tests arent a diagnostic tool or a therapeutic tool and dont dispense with consulting a doctor or psychotherapist `
+      : `تنويه هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن جلسة الطبيب أو المعالج النفسي`;
   return (
-    <>
+    <div className={styles.container}>
+      <button className={styles.languageBtn} onClick={changeLanguage}>
+        {languages}
+      </button>
       <h2 className={styles.title}>
-        لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من
-        <span> كيورا</span>
-        <p className={styles.note}>
-          تنويه: هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن جلسة
-          الطبيب أو المعالج النفسي
-        </p>
+        {textOne}
+
+        <p className={styles.note}>{textTwo}</p>
       </h2>
       <Swiper
         // spaceBetween={5}
@@ -51,24 +68,26 @@ export default function MySlide() {
             slidesPerView: 1,
             spaceBetween: 10,
           },
-          768: {
+          600: {
             slidesPerView: 2,
             spaceBetween: 10,
           },
-          770: {
+          850: {
             slidesPerView: 3,
             spaceBetween: 10,
           },
-          1024: {
+          1000: {
             slidesPerView: 4,
             spaceBetween: 15,
           },
         }}
       >
-        {data.map((card, index) => (
+        {data[locale].data.map((card, index) => (
           <SwiperSlide key={index}>
             <CardSlide
               key={card.id}
+              id={index}
+              data={props.data}
               backgroundColor={card.backgroundColor}
               cardTitle={card.cardTitle}
               cardIcon={card.cardIcon}
@@ -81,6 +100,6 @@ export default function MySlide() {
         <div className="swiper-button-next" onClick={handleNextSlide}></div>
         <div className="swiper-button-prev" onClick={handlePrevSlide}></div>
       </div>
-    </>
+    </div>
   );
 }

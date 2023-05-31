@@ -1,26 +1,42 @@
 .title {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: start;
+  padding-inline: 10px;
 }
 .note {
   font-size: 15px;
   color: gray;
 }
-@media (min-width: 768px) {
+.languageBtn {
+  position: absolute;
+  top: 2%;
+  background-color: #333352;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+}
+.languageBtn:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px #5a01a7;
+}
+@media (min-width: 600px) {
   .title {
-    font-size: 25px;
+    font-size: 15px;
+  }
+  .note {
+    font-size: 14px;
   }
 }
-@media (min-width: 770px) {
+@media (min-width: 800px) {
   .title {
     font-size: 30px;
   }
-}
-
-@media (min-width: 1024px) {
-  .title {
-    font-size: 30px;
+  .note {
+    font-size: 19px;
   }
 }
