@@ -12,8 +12,25 @@ import "swiper/css";
 import { useRouter } from "next/router";
 
 export default function MySlide(props) {
+  /////////change language///////////
   const { locale, asPath, push } = useRouter();
+  const changeLanguage = (e) => {
+    const newLocale = locale === "en" ? "ar" : "en";
+    push(asPath, asPath, { locale: newLocale });
+  };
+  //////////////////////
+  const languages = locale === "en" ? `لغة عربية` : ` English `;
+  const textOne =
+    locale === "en"
+      ? `Because your mental health is important to know its level using the Labayh measures `
+      : `لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من كيورا`;
+  const textTwo =
+    locale === "en"
+      ? `Disclaimer:These tests arent a diagnostic tool or a therapeutic tool and dont dispense with consulting a doctor or psychotherapist `
+      : `تنويه هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن جلسة الطبيب أو المعالج النفسي`;
   // console.log(data[locale].data);
+
+  ////////////pagination of slider////////////
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   const swiperRef = useRef(null);
 
@@ -28,20 +45,7 @@ export default function MySlide(props) {
       swiperRef.current.swiper.slidePrev();
     }
   };
-  const changeLanguage = (e) => {
-    const newLocale = locale === "en" ? "ar" : "en";
-    push(asPath, asPath, { locale: newLocale });
-  };
 
-  const languages = locale === "en" ? `لغة عربية` : ` English `;
-  const textOne =
-    locale === "en"
-      ? `Because your mental health is important to know its level using the Labayh measures `
-      : `لأن صحتك النفسية مهمة تعرف على مستواها باستخدام المقاييس من كيورا`;
-  const textTwo =
-    locale === "en"
-      ? `Disclaimer:These tests arent a diagnostic tool or a therapeutic tool and dont dispense with consulting a doctor or psychotherapist `
-      : `تنويه هذه الاختبارات ليست أداة تشخيص أو أداة علاجية و لا تغني عن جلسة الطبيب أو المعالج النفسي`;
   return (
     <div className={styles.container}>
       <button className={styles.languageBtn} onClick={changeLanguage}>
@@ -85,7 +89,7 @@ export default function MySlide(props) {
         {data[locale].data.map((card, index) => (
           <SwiperSlide key={index}>
             <CardSlide
-              key={card.id}
+              key={index}
               id={index}
               data={props.data}
               backgroundColor={card.backgroundColor}

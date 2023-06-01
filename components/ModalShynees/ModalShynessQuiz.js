@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export default function ModalShynessQuiz(props) {
   const { locale } = useRouter();
   const {
-    id,
+    modalId,
     modalQuizRef,
     currentQuestion,
     active,
@@ -24,7 +24,6 @@ export default function ModalShynessQuiz(props) {
   const progressBarRef = useRef(null);
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-
   const progress = (currentQuestion / totalQuestions) * 100;
 
   const handleAnswerClick = (answer) => {
@@ -32,9 +31,14 @@ export default function ModalShynessQuiz(props) {
   };
   /////////////////go back to previous maodal/////////////////////
   const closeModal = () => {
+    // setSelectedAnswer(null);
     handleClose();
   };
-
+  ///////////////////////////////////close all modal////////
+  const handleCloseAllModal = () => {
+    setSelectedAnswer(null);
+    handleCloseAll();
+  };
   ////////////////**************popup alert***///////////////////////
   const alertRef = useRef(null);
 
@@ -60,10 +64,10 @@ export default function ModalShynessQuiz(props) {
   return (
     <>
       <dialog
-        key={id}
+        key={modalId}
         ref={modalQuizRef}
         className={`${styles.dialog} ${
-          active ? styles[`active${id}`] : styles.hidden
+          modalId ? styles[`active${modalId}`] : styles.hidden
         }`}
       >
         <div className={styles.modalContent}>
@@ -92,7 +96,7 @@ export default function ModalShynessQuiz(props) {
                   style={
                     selectedAnswer === answerItem
                       ? { backgroundColor: backgroundColor }
-                      : {}
+                      : null
                   }
                 >
                   {answerItem}
@@ -118,7 +122,7 @@ export default function ModalShynessQuiz(props) {
           </button>
         </div>
       </dialog>
-
+      {/***********alert dialog (must choose question)**************/}
       <dialog ref={alertRef} className={styles.popup}>
         <div className={styles.alertContainer}>
           <AiOutlineExclamationCircle className={styles.icon} />

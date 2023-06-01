@@ -1,4 +1,4 @@
-import allQuiz from "../../allQuiz";
+// import allQuiz from "../../allQuiz";
 // import ModalShyness from "../../components/ModalShynees/ModalShyness";
 
 // export default function ModalsShyneesQuizs({ props }) {
@@ -29,15 +29,15 @@ import allQuiz from "../../allQuiz";
 // };
 // }
 
-export async function getStaticProps(context) {
-  // const id = context.params.id;
-  // const res = await fetch("http://localhost:3000/api/scales");
-  // const data = await res.json();
-  const { params } = context;
-  const { id } = params;
-  const quiz = allQuiz.find((q) => q.modalId === parseInt(id));
-  console.log(quiz);
-  return {
-    props: { quiz },
-  };
-}
+// export async function getStaticProps(context) {
+// const id = context.params.id;
+// const res = await fetch("http://localhost:3000/api/scales");
+// const data = await res.json();
+//   const { params } = context;
+//   const { id } = params;
+//   const quiz = allQuiz.find((q) => q.modalId === parseInt(id));
+//   console.log(quiz);
+//   return {
+//     props: { quiz },
+//   };
+// }

@@ -24,7 +24,7 @@
   animation: pulse 1s ease-in-out;
 }
 .dialog.active6 {
-  animation: fade-out 2s ease-out;
+  animation: fade-out 1s ease-out;
 }
 
 @keyframes fade-in {
@@ -83,6 +83,7 @@
 .dialog.hidden {
   display: none;
 }
+/***********/
 .modalContent {
   display: flex;
   flex-direction: column;
@@ -91,7 +92,6 @@
   padding-bottom: 2rem;
 }
 .headerContent {
-  /* background-color: #5e4af5; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -140,7 +140,6 @@
 .list li.selected {
   background-color: #d9d5f7;
   color: white;
-  /* border-color: #5e4af5; */
 }
 
 .nextButton {

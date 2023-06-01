@@ -43,6 +43,7 @@ export default function ModalShyness({
   ///////////////////close all modals//////////
   const handleCloseAll = () => {
     handleClose();
+
     modalQuizRefs.current.forEach((modalRef) => {
       if (modalRef && modalRef.close) {
         modalRef.close();
@@ -94,7 +95,7 @@ export default function ModalShyness({
 
       {data.questions.map((question, index) => (
         <ModalShynessQuiz
-          id={id}
+          modalId={data.modalId}
           handleOpen={() => handleQuizClick(index + 1)}
           handleClose={() => handleQuizClose(index)}
           key={`${question.modalId}-${question.id}`}
