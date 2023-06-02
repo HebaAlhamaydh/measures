@@ -21,7 +21,7 @@ export default function ModalShyness({
 
   const modalQuizRefs = useRef([]);
   const [currentQuestion, setCurrentQuestion] = useState(1);
-
+  const [selectedAnswer, setSelectedAnswer] = useState({});
   ///////////////////show quiz modal////////////
   const handleQuizClick = (id) => {
     if (modalQuizRefs.current[id]) {
@@ -40,6 +40,7 @@ export default function ModalShyness({
       modalQuizRefs.current[id].close();
     }
   };
+
   ///////////////////close all modals//////////
   const handleCloseAll = () => {
     handleClose();
@@ -107,6 +108,9 @@ export default function ModalShyness({
           backgroundColor={data.backgroundColor}
           active={currentQuestion}
           handleCloseAll={handleCloseAll}
+          selectedAnswer={selectedAnswer}
+          setSelectedAnswer={setSelectedAnswer}
+          index={index}
         />
       ))}
     </>
