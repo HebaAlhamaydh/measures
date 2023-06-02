@@ -18,27 +18,42 @@ export default function ModalShynessQuiz(props) {
     handleOpen,
     handleClose,
     handleCloseAll,
+    selectedAnswer,
+    setSelectedAnswer,
+    index,
   } = props;
   // console.log(question);
 
   const progressBarRef = useRef(null);
 
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  // const [selectedAnswer, setSelectedAnswer] = useState(null);
   const progress = (currentQuestion / totalQuestions) * 100;
-
-  const handleAnswerClick = (answer) => {
-    setSelectedAnswer(answer);
+  const dialogArr = [modalQuizRef];
+  // const handleAnswerClick = (answer) => {
+  //   setSelectedAnswer(answer);
+  // };
+  const handleAnswerClick = (newAnswer) => {
+    if (selectedAnswer[0]) {
+      return setSelectedAnswer((st) => ({
+        ...st,
+        [index]: { question, newAnswer },
+      }));
+    }
+    return setSelectedAnswer({ [index]: { question, newAnswer } });
   };
   /////////////////go back to previous maodal/////////////////////
   const closeModal = () => {
     // setSelectedAnswer(null);
+    setSelectedAnswer((st) => ({ ...st, [index]: {} }));
     handleClose();
   };
-  ///////////////////////////////////close all modal////////
+
+  ///////////////////////////////////close all modal////////////
   const handleCloseAllModal = () => {
-    setSelectedAnswer(null);
+    setSelectedAnswer({});
     handleCloseAll();
   };
+
   ////////////////**************popup alert***///////////////////////
   const alertRef = useRef(null);
 
@@ -78,7 +93,10 @@ export default function ModalShynessQuiz(props) {
             <button className={styles.btnClose} onClick={closeModal}>
               <AiOutlineRight />
             </button>
-            <button className={styles.btnCloseAll} onClick={handleCloseAll}>
+            <button
+              className={styles.btnCloseAll}
+              onClick={handleCloseAllModal}
+            >
               <GrClose />
             </button>
             <h2>{question.questions}</h2>
@@ -91,11 +109,13 @@ export default function ModalShynessQuiz(props) {
                   key={index}
                   onClick={() => handleAnswerClick(answerItem)}
                   className={
-                    selectedAnswer === answerItem ? styles.selected : ""
+                    selectedAnswer[index]?.newAnswer === answerItem
+                      ? styles.selected
+                      : ""
                   }
                   style={
-                    selectedAnswer === answerItem
-                      ? { backgroundColor: backgroundColor }
+                    selectedAnswer[index]?.newAnswer === answerItem
+                      ? { backgroundColor: backgroundColor } // should be handled through className
                       : null
                   }
                 >

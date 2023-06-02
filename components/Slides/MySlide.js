@@ -57,7 +57,7 @@ export default function MySlide(props) {
         <p className={styles.note}>{textTwo}</p>
       </h2>
       <Swiper
-        // spaceBetween={5}
+        spaceBetween={5}
         slidesPerView={4}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         navigation={{
