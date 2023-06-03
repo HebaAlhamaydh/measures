@@ -44,7 +44,6 @@ export default function ModalShyness({
   ///////////////////close all modals//////////
   const handleCloseAll = () => {
     handleClose();
-
     modalQuizRefs.current.forEach((modalRef) => {
       if (modalRef && modalRef.close) {
         modalRef.close();
@@ -93,7 +92,18 @@ export default function ModalShyness({
           </div>
         </div>
       </dialog>
-
+      {/*to loop through questions each question has dialog(index)*/}
+      {/** question(each dialog)///  {
+            id: 1,
+            questions: "I am a shy person ",
+            options: [
+              "Strongly Agree",
+              "Agree",
+              "Neutral",
+              "Disagree",
+              "Strongly Disagree",
+            ],
+          },*/}
       {data.questions.map((question, index) => (
         <ModalShynessQuiz
           modalId={data.modalId}

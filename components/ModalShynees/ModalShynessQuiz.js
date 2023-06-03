@@ -22,18 +22,23 @@ export default function ModalShynessQuiz(props) {
     setSelectedAnswer,
     index,
   } = props;
-  // console.log(question);
 
   const progressBarRef = useRef(null);
 
   // const [selectedAnswer, setSelectedAnswer] = useState(null);
   const progress = (currentQuestion / totalQuestions) * 100;
-  const dialogArr = [modalQuizRef];
+
   // const handleAnswerClick = (answer) => {
   //   setSelectedAnswer(answer);
   // };
+  ////////////////////////set selected answer///////////////////
+  //////////(index) number of dialog
+  //////////0:{question: {…}, newAnswer: 'نادراً'}////////
+  //////////1:{question: {…}, newAnswer: 'غالباً'}//////////
+  ////////question:id:2 options:  ['أبداً', 'نادراً', 'أحياناً', 'غالباً', 'دائماً']questions: "كل ما أقوم فيه في العمل يتطلب جهد عالي جداً"
   const handleAnswerClick = (newAnswer) => {
-    if (selectedAnswer[0]) {
+    console.log(selectedAnswer);
+    if (selectedAnswer) {
       return setSelectedAnswer((st) => ({
         ...st,
         [index]: { question, newAnswer },
@@ -41,10 +46,11 @@ export default function ModalShynessQuiz(props) {
     }
     return setSelectedAnswer({ [index]: { question, newAnswer } });
   };
+
   /////////////////go back to previous maodal/////////////////////
   const closeModal = () => {
     // setSelectedAnswer(null);
-    setSelectedAnswer((st) => ({ ...st, [index]: {} }));
+    // setSelectedAnswer((st) => ({ ...st, [index]: {} }));
     handleClose();
   };
 
@@ -58,7 +64,7 @@ export default function ModalShynessQuiz(props) {
   const alertRef = useRef(null);
 
   const handleQuizClick = () => {
-    if (selectedAnswer) {
+    if (selectedAnswer[index]) {
       handleOpen();
     } else {
       alertRef.current.showModal();
@@ -104,9 +110,9 @@ export default function ModalShynessQuiz(props) {
 
           <ul className={styles.list}>
             {answer &&
-              answer.map((answerItem, index) => (
+              answer.map((answerItem, i) => (
                 <li
-                  key={index}
+                  key={i}
                   onClick={() => handleAnswerClick(answerItem)}
                   className={
                     selectedAnswer[index]?.newAnswer === answerItem
