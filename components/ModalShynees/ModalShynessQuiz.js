@@ -60,7 +60,7 @@ export default function ModalShynessQuiz(props) {
     handleCloseAll();
   };
 
-  ////////////////**************popup alert***///////////////////////
+  ////////////////**************popup alert if not select answer***///////////////////////
   const alertRef = useRef(null);
 
   const handleQuizClick = () => {
@@ -121,7 +121,7 @@ export default function ModalShynessQuiz(props) {
                   }
                   style={
                     selectedAnswer[index]?.newAnswer === answerItem
-                      ? { backgroundColor: backgroundColor } // should be handled through className
+                      ? { backgroundColor: backgroundColor }
                       : null
                   }
                 >
@@ -148,7 +148,7 @@ export default function ModalShynessQuiz(props) {
           </button>
         </div>
       </dialog>
-      {/***********alert dialog (must choose question)**************/}
+      {/***********alert dialog (must choose answer)**************/}
       <dialog ref={alertRef} className={styles.popup}>
         <div className={styles.alertContainer}>
           <AiOutlineExclamationCircle className={styles.icon} />
