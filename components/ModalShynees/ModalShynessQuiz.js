@@ -27,24 +27,26 @@ export default function ModalShynessQuiz(props) {
 
   // const [selectedAnswer, setSelectedAnswer] = useState(null);
   const progress = (currentQuestion / totalQuestions) * 100;
-
+  const questionQuiz = question.questions;
   // const handleAnswerClick = (answer) => {
   //   setSelectedAnswer(answer);
   // };
   ////////////////////////set selected answer///////////////////
   //////////(index) number of dialog
-  //////////0:{question: {…}, newAnswer: 'نادراً'}////////
-  //////////1:{question: {…}, newAnswer: 'غالباً'}//////////
-  ////////question:id:2 options:  ['أبداً', 'نادراً', 'أحياناً', 'غالباً', 'دائماً']questions: "كل ما أقوم فيه في العمل يتطلب جهد عالي جداً"
+  //////////0: {questionQuiz: 'الشعور بقلةأو فقدان الاهتمام أو عدم الاستمتاع بالأمور التي كنت تستمتع بها', newAnswer: 'كل يوم تقريباً'}
+  ///////////1: {questionQuiz: 'الشعور بالحزن العميق والشعور باليأس', newAnswer: 'بعض الأيام'}
+  //////////2: {questionQuiz: 'الصعوبة في النوم أو النوم أكثر من العادة ', newAnswer: 'أبدا'}
+
   const handleAnswerClick = (newAnswer) => {
     console.log(selectedAnswer);
     if (selectedAnswer) {
       return setSelectedAnswer((st) => ({
+        ///creates a new state object,st current state  and adding a new key-value pair to it [index]: { question, newAnswer }
         ...st,
-        [index]: { question, newAnswer },
+        [index]: { questionQuiz, newAnswer },
       }));
     }
-    return setSelectedAnswer({ [index]: { question, newAnswer } });
+    return setSelectedAnswer({ [index]: { questionQuiz, newAnswer } });
   };
 
   /////////////////go back to previous maodal/////////////////////
