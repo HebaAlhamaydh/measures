@@ -46,6 +46,8 @@ export default function ModalShynessQuiz(props) {
         [index]: { questionQuiz, newAnswer },
       }));
     }
+    //inside key(index) creates an object(nested object) with two properties questionQuiz,newAnswer
+    // [index]: { questionQuiz: questionQuiz, newAnswer: newAnswer },
     return setSelectedAnswer({ [index]: { questionQuiz, newAnswer } });
   };
 
