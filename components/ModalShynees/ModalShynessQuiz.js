@@ -116,6 +116,7 @@ export default function ModalShynessQuiz(props) {
                 <li
                   key={i}
                   onClick={() => handleAnswerClick(answerItem)}
+                  ////optional chaining  (?.) checks if the newAnswer property exists on the selectedAnswer[index] object
                   className={
                     selectedAnswer[index]?.newAnswer === answerItem
                       ? styles.selected
