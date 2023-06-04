@@ -53,7 +53,6 @@ export default function ModalShynessQuiz(props) {
 
   /////////////////go back to previous maodal/////////////////////
   const closeModal = () => {
-    // setSelectedAnswer(null);
     // setSelectedAnswer((st) => ({ ...st, [index]: {} }));
     handleClose();
   };
