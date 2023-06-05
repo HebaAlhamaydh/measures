@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CardSlide from "./CardSlide";
 import data from "../../data";
 import styles from "../../styles/MySlide.module.css";
@@ -8,12 +8,14 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+
 import "swiper/css";
 import { useRouter } from "next/router";
 
 export default function MySlide(props) {
   /////////change language///////////
   const { locale, asPath, push } = useRouter();
+
   const changeLanguage = (e) => {
     const newLocale = locale === "en" ? "ar" : "en";
     push(asPath, asPath, { locale: newLocale });
@@ -45,7 +47,45 @@ export default function MySlide(props) {
       swiperRef.current.swiper.slidePrev();
     }
   };
+  //////////////////////////////////////
+  useEffect(() => {
+    const initializeSwiper = () => {
+      swiperRef.current.destroy();
 
+      if (swiperRef.current && !swiperRef.current.swiper) {
+        const newSwiper = new SwiperCore(".mySwiper", {
+          modules: [Navigation, Pagination, Scrollbar, A11y],
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          // pagination: { clickable: true },
+          // scrollbar: { draggable: true },
+
+          breakpoints: {
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            600: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            850: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            1000: {
+              slidesPerView: 4,
+              spaceBetween: 15,
+            },
+          },
+        });
+        newSwiper.update();
+      }
+    }; //delay of 0  to allow the component to render before initializing the Swiper instance.
+    setTimeout(initializeSwiper, 0);
+  }, [locale]);
   return (
     <div className={styles.container}>
       <button className={styles.languageBtn} onClick={changeLanguage}>
@@ -53,19 +93,17 @@ export default function MySlide(props) {
       </button>
       <h2 className={styles.title}>
         {textOne}
-
         <p className={styles.note}>{textTwo}</p>
       </h2>
+
       <Swiper
-        spaceBetween={5}
-        slidesPerView={4}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
+        // pagination={{ clickable: true }}
+        // scrollbar={{ draggable: true }}
         className="mySwiper"
         breakpoints={{
           0: {
@@ -85,6 +123,7 @@ export default function MySlide(props) {
             spaceBetween: 15,
           },
         }}
+        onSwiper={(swip) => (swiperRef.current = swip)}
       >
         {data[locale].data.map((card, index) => (
           <SwiperSlide key={index}>
@@ -100,6 +139,7 @@ export default function MySlide(props) {
           </SwiperSlide>
         ))}
       </Swiper>
+
       <div className="swiper-navigation">
         <div className="swiper-button-next" onClick={handleNextSlide}></div>
         <div className="swiper-button-prev" onClick={handlePrevSlide}></div>
