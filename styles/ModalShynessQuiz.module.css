@@ -7,8 +7,18 @@
   margin: 0;
   padding: 0;
 }
-
-.dialog.active1 {
+.dialog.active {
+  animation: slide 0.5s ease-in-out;
+}
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/* .dialog.active1 {
   animation: fade-in 0.5s ease-in-out;
 }
 .dialog.active2 {
@@ -25,8 +35,8 @@
 }
 .dialog.active6 {
   animation: fade-out 1s ease-out;
-}
-
+} */
+/* 
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -79,7 +89,7 @@
   to {
     opacity: 1;
   }
-}
+} */
 .dialog.hidden {
   display: none;
 }

@@ -9,7 +9,6 @@ export default function CardSlide(props) {
   const modalRef = useRef([]);
   const handleClick = () => modalRef.current.showModal();
 
-  console.log(JSON.parse(props.data)[locale].quiz[id]);
   // const rowData = JSON.parse(props.data)[id];
   const rowData = JSON.parse(props.data)[locale].quiz[id];
   return (

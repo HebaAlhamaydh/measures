@@ -40,7 +40,7 @@ export default function ModalShynessQuiz(props) {
   const handleAnswerClick = (newAnswer) => {
     console.log(selectedAnswer);
     if (selectedAnswer) {
-      return setSelectedAnswer((st) => ({
+      setSelectedAnswer((st) => ({
         ///creates a new state object,st current state  and adding a new key-value pair to it [index]: { question, newAnswer }
         ...st,
         [index]: { questionQuiz, newAnswer },
@@ -48,7 +48,6 @@ export default function ModalShynessQuiz(props) {
     }
     //inside key(index) creates an object(nested object) with two properties questionQuiz,newAnswer
     // [index]: { questionQuiz: questionQuiz, newAnswer: newAnswer },
-    return setSelectedAnswer({ [index]: { questionQuiz, newAnswer } });
   };
 
   /////////////////go back to previous maodal/////////////////////
@@ -91,7 +90,7 @@ export default function ModalShynessQuiz(props) {
         key={modalId}
         ref={modalQuizRef}
         className={`${styles.dialog} ${
-          modalId ? styles[`active${modalId}`] : styles.hidden
+          modalId ? styles.active : styles.hidden
         }`}
       >
         <div className={styles.modalContent}>
